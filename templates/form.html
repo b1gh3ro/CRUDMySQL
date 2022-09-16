@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <style>
+        p{
+            font-size: 30px;
+        }
+
+        input{
+            padding: 5px 10px;
+        }
+    </style>
+    <title></title>
+</head>
+<body>
+    <h1>
+    To Add User:
+    </h1>
+    <form action="/login" method = "POST">
+        <p>Name:</p>
+        <input size="50" type = "text" name = "name" placeholder="Enter Name"required/>
+        <p>Number: </p>
+        <input size="50" type = "integer" name = "number" placeholder="Enter Number" required />
+        <p>Email:</p>
+        <input size="50" type = "email" name = "email" placeholder="Enter Email" required/>
+        <br>
+        <br>
+        <input type = "submit" value = "Submit" />
+     </form>
+
+     <a href="/">go back</a>
+
+</body>
+</html>

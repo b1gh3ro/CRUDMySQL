@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <title></title>
+</head>
+<body>
+
+<table>
+  <thead>
+    <tr>
+        <th>Name</th>
+        <th>Number</th>
+        <th>Email</th>
+    </tr>
+    </thead>    
+    <tbody>
+     {% for row in data %}    
+            <tr>
+                <td>{{row[0]}}</td>
+                <td>{{row[1]}}</td>
+                <td>{{row[2]}}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<h1>To Delete User:</h1>
+<form action="/delete" method="POST">
+    <p>Number:</p>
+    <input size="50" type = "text" name = "deletenum" placeholder="Enter Number" required />
+    <br>
+    <br>
+    <input type = "submit" value = "Submit" />
+ </form>
+<a href="/">go back</a>
+</body>
+</html>
