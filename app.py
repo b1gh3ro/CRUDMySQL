@@ -69,18 +69,23 @@ def update():
     name = request.form['name']
     number = request.form['number']
     email = request.form['email']
-    cursor = mysql.connection.cursor()
     if name != '' :
+        cursor = mysql.connection.cursor()
         cursor.execute("""update Info set name = %s where rollno = %s;""", (name,rollno))
         mysql.connection.commit()
-    elif email != '':
+        cursor.close()
+    if email != '':
+        cursor = mysql.connection.cursor()
         cursor.execute("""update Info set email = %s where rollno = %s;""", (email,rollno))
         mysql.connection.commit()
-    elif number != NULL:
+        cursor.close()
+    if number != '':
+        cursor = mysql.connection.cursor()
         cursor.execute("""update Info set number = %s where rollno = %s;""", (number,rollno))
         mysql.connection.commit()
+        cursor.close()
        
     
-    cursor.close()
+    
     return """ yay! update completed successfully
     <p>to view entries press <a href="/people">here</a> """
