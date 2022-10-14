@@ -1,5 +1,6 @@
-from flask import Flask, render_template, request, redirect, url_for, session
+from flask import Flask, render_template, request
 from flask_mysqldb import MySQL
+from pymysql import NULL
 
 
 app = Flask(__name__)
@@ -36,11 +37,12 @@ def form():
 
 @app.route("/login", methods = ['post'])
 def login():
+    rollno = request.form['rollno']
     name = request.form['name']
     number = request.form['number']
     email = request.form['email']
     cursor = mysql.connection.cursor()
-    cursor.execute(""" INSERT INTO Info VALUES (%s,%s ,%s) """, (name, number, email))
+    cursor.execute(""" INSERT INTO Info (rollno, Name, Number, Email) VALUES (%s,%s,%s ,%s) """, (rollno, name, number, email))
     mysql.connection.commit()
     cursor.close()
     return """yay! User added successfully
@@ -51,9 +53,9 @@ def login():
 #deleting
 @app.route("/delete", methods = ['post'])
 def delete():
-    number = request.form['deletenum']
+    rollno = request.form['deleteroll']
     cursor = mysql.connection.cursor()
-    cursor.execute("""Delete from Info where number=%s;""",(number,))
+    cursor.execute("""Delete from Info where rollno=%s;""",(rollno,))
     mysql.connection.commit()
     cursor.close()
     return """yay! deletion completed successfully
@@ -61,3 +63,24 @@ def delete():
         """
 
 
+@app.route("/update", methods = ['post'])
+def update():
+    rollno = request.form['rollno']
+    name = request.form['name']
+    number = request.form['number']
+    email = request.form['email']
+    cursor = mysql.connection.cursor()
+    if name != '' :
+        cursor.execute("""update Info set name = %s where rollno = %s;""", (name,rollno))
+        mysql.connection.commit()
+    elif email != '':
+        cursor.execute("""update Info set email = %s where rollno = %s;""", (email,rollno))
+        mysql.connection.commit()
+    elif number != NULL:
+        cursor.execute("""update Info set number = %s where rollno = %s;""", (number,rollno))
+        mysql.connection.commit()
+       
+    
+    cursor.close()
+    return """ yay! update completed successfully
+    <p>to view entries press <a href="/people">here</a> """

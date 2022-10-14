@@ -11,6 +11,7 @@
         <th>Name</th>
         <th>Number</th>
         <th>Email</th>
+        <th>Rollno</th>
     </tr>
     </thead>    
     <tbody>
@@ -19,18 +20,37 @@
                 <td>{{row[0]}}</td>
                 <td>{{row[1]}}</td>
                 <td>{{row[2]}}</td>
+                <td>{{row[3]}}</td>
             </tr>
         {% endfor %}
     </tbody>
 </table>
 <h1>To Delete User:</h1>
 <form action="/delete" method="POST">
-    <p>Number:</p>
-    <input size="50" type = "text" name = "deletenum" placeholder="Enter Number" required />
+    <p>Rollno:</p>
+    <input size="50" type = "integer" name = "deleteroll" placeholder="Enter Rollno" required />
     <br>
     <br>
     <input type = "submit" value = "Submit" />
  </form>
+
+ <h1>
+    To Update User:
+ </h1>
+ <form action="/update" method = "POST">
+    <p>Rollno (required, already existing):</p>
+    <input size="50" type = "integer" name = "rollno" placeholder="Enter Rollno"required/>
+    <p>Name:</p>
+    <input size="50" type = "text" name = "name" placeholder="Enter Name"/>
+    <p>Number: </p>
+    <input size="50" type = "text" name = "number" placeholder="Enter Number"  />
+    <p>Email:</p>
+    <input size="50" type = "email" name = "email" placeholder="Enter Email" />
+    <br>
+    <br>
+    <input type = "submit" value = "Submit" />
+ </form>
+
 <a href="/">go back</a>
 </body>
 </html>
