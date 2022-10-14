@@ -1,6 +1,5 @@
 from flask import Flask, render_template, request
 from flask_mysqldb import MySQL
-from pymysql import NULL
 
 
 app = Flask(__name__)
@@ -35,7 +34,7 @@ def form():
     return render_template('form.html')
 
 
-@app.route("/login", methods = ['post'])
+@app.route("/create", methods = ['post'])
 def login():
     rollno = request.form['rollno']
     name = request.form['name']
